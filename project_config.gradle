@@ -1,0 +1,11 @@
+ext.projectConfig = [
+		applicationId    : "com.whitipet.vaservaga",
+
+		versionCode      : 1,
+		versionName      : "1.0.0",
+
+		minSdkVersion    : 21,
+		compileSdkVersion: 30,
+
+		buildToolsVersion: "30.0.2",
+]

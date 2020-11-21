@@ -1,0 +1,3 @@
+<resources>
+	<style name="Theme.Vaservaga" parent="android:Theme.DeviceDefault"/>
+</resources>
