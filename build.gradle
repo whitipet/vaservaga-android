@@ -53,10 +53,24 @@ subprojects {
 						minifyEnabled = false
 						zipAlignEnabled = false
 						crunchPngs = false
-
 						if (moduleCurrent == moduleAndroidApp) {
 							shrinkResources = false
 						}
+					}
+
+					release {
+						signingConfig = signingConfigs.debug
+						debuggable = false
+						minifyEnabled = true
+						zipAlignEnabled = true
+						crunchPngs = true
+						if (moduleCurrent == moduleAndroidApp) {
+							shrinkResources = true
+						}
+						proguardFiles(
+								getDefaultProguardFile("proguard-android-optimize.txt"),
+								"$project.rootDir/proguard-rules.pro"
+						)
 					}
 				}
 
