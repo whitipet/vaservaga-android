@@ -77,13 +77,13 @@ final class DeviceRotationManager implements SensorEventListener {
 		}
 
 		float x = event.values[0] / 10.0f;
-		float y = event.values[1] / 10.0f;
+		float y = -event.values[1] / 10.0f;
 
 		onRotationChangedListener.onRotationChanged(x, y);
 	}
 
 	interface OnRotationChangedListener {
 
-		void onRotationChanged(float pitch, float roll);
+		void onRotationChanged(float x, float y);
 	}
 }
