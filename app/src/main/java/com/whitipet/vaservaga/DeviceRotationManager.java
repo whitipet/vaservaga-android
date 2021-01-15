@@ -51,9 +51,7 @@ final class DeviceRotationManager implements SensorEventListener {
 		if (sensorManager != null) {
 			Sensor rotationVectorSensor = getRotationVectorSensor();
 			if (rotationVectorSensor != null) {
-				sensorManager.registerListener(this, rotationVectorSensor,
-						SensorManager.SENSOR_DELAY_UI, SensorManager.SENSOR_DELAY_UI
-				);
+				sensorManager.registerListener(this, rotationVectorSensor, SensorManager.SENSOR_DELAY_FASTEST);
 				registered = true;
 			}
 		}
