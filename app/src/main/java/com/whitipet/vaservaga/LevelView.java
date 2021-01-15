@@ -47,8 +47,8 @@ final class LevelView extends View {
 	private float bubbleRadius;
 	private final Path outlinePath = new Path();
 
-	private float pitch;
-	private float roll;
+	private float x;
+	private float y;
 
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -61,7 +61,7 @@ final class LevelView extends View {
 				center.x + halfMinSize,
 				center.y + halfMinSize
 		);
-		bubbleStepMultiplier = halfMinSize / 90.0f;
+		bubbleStepMultiplier = halfMinSize;
 		bubbleRadius = bounds.width() * 0.05f;
 
 		updateOutline();
@@ -101,17 +101,17 @@ final class LevelView extends View {
 		super.onDraw(canvas);
 
 		canvas.drawCircle(
-				center.x + (-roll * bubbleStepMultiplier),
-				center.y + (pitch * bubbleStepMultiplier),
+				center.x + (x * bubbleStepMultiplier),
+				center.y + (y * bubbleStepMultiplier),
 				bubbleRadius, paintBubble
 		);
 
 		canvas.drawPath(outlinePath, paintOutline);
 	}
 
-	void setData(float pitch, float roll) {
-		this.pitch = pitch;
-		this.roll = roll;
+	void setData(float x, float y) {
+		this.x = x;
+		this.y = y;
 
 		invalidate();
 	}
