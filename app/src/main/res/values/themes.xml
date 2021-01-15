@@ -2,8 +2,8 @@
 	<style name="Theme.Vaservaga" parent="android:Theme.DeviceDefault.NoActionBar">
 		<item name="android:background">#000</item>
 
-		<item name="android:statusBarColor">#0000</item>
-		<item name="android:navigationBarColor">#0000</item>
+		<item name="android:statusBarColor" tools:ignore="NewApi">#0000</item>
+		<item name="android:navigationBarColor" tools:ignore="NewApi">#0000</item>
 
 		<item name="android:enforceStatusBarContrast" tools:targetApi="q">false</item>
 		<item name="android:enforceNavigationBarContrast" tools:targetApi="q">false</item>

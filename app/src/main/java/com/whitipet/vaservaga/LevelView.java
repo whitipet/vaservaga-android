@@ -1,11 +1,13 @@
 package com.whitipet.vaservaga;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.RectF;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -24,6 +26,7 @@ final class LevelView extends View {
 		super(context, attrs, defStyleAttr);
 	}
 
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	public LevelView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
