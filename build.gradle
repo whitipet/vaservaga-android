@@ -82,6 +82,11 @@ subprojects {
 
 				dexOptions.preDexLibraries = true
 				lintOptions.abortOnError = false
+
+				dependenciesInfo {
+					includeInApk = false
+					includeInBundle = false
+				}
 			}
 		} else if (moduleCurrent == moduleJava) {
 			sourceCompatibility = JavaVersion.VERSION_1_8
