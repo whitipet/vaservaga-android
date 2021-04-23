@@ -1,0 +1,4 @@
+java {
+    sourceCompatibility = config.javaVersion
+    targetCompatibility = config.javaVersion
+}

@@ -1,4 +1,4 @@
-ext.projectConfig = [
+ext.config = [
 		applicationId    : "com.whitipet.vaservaga",
 
 		versionCode      : 2,
@@ -8,4 +8,6 @@ ext.projectConfig = [
 		compileSdkVersion: 30,
 
 		buildToolsVersion: "30.0.3",
+
+		javaVersion      : JavaVersion.VERSION_11,
 ]

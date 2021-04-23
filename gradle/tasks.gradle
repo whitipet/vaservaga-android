@@ -1,0 +1,5 @@
+task clean(type: Delete) {
+	delete rootProject.buildDir
+}
+
+// apply from: file("task_create_release.gradle")

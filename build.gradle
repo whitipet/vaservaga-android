@@ -1,13 +1,21 @@
 buildscript {
+	ext.mainRootDir = rootProject.projectDir.absolutePath
+
 	apply from: file("project_config.gradle")
 
 	repositories {
 		google()
 		jcenter()
+		maven {
+			name = "r8"
+			url = "https://storage.googleapis.com/r8-releases/raw"
+			content { includeGroup("com.android.tools") }
+		}
 	}
 
 	dependencies {
-		classpath "com.android.tools.build:gradle:7.0.0-alpha04"
+		classpath "com.android.tools:r8:3.0.36-dev"
+		classpath "com.android.tools.build:gradle:7.0.0-alpha14"
 	}
 }
 
@@ -17,86 +25,22 @@ subprojects {
 		jcenter()
 	}
 
-	def moduleAndroidApp = "com.android.build.gradle.AppPlugin"
-	def moduleAndroidLib = "com.android.build.gradle.LibraryPlugin"
-	def moduleJava = "org.gradle.api.plugins.JavaBasePlugin"
+	def javaPlugin = "org.gradle.api.plugins.JavaPlugin"
+	def javaBasePlugin = "org.gradle.api.plugins.JavaBasePlugin"
+	def javaBasePluginInject = javaBasePlugin + '$' + "Inject"
+	def androidLibraryPlugin = "com.android.build.gradle.LibraryPlugin"
+	def androidAppPlugin = "com.android.build.gradle.AppPlugin"
 	project.plugins.whenPluginAdded { plugin ->
-		def moduleCurrent = plugin.class.name
-		if (moduleCurrent == moduleAndroidApp || moduleCurrent == moduleAndroidLib) {
-			android {
-				compileSdkVersion = projectConfig.compileSdkVersion
-				buildToolsVersion = projectConfig.buildToolsVersion
-
-				defaultConfig {
-					if (moduleCurrent == moduleAndroidApp) {
-						applicationId = projectConfig.applicationId
-					}
-					versionCode = projectConfig.versionCode
-					versionName = projectConfig.versionName
-					minSdkVersion(projectConfig.minSdkVersion)
-					targetSdkVersion(projectConfig.compileSdkVersion)
-				}
-
-				signingConfigs {
-					debug {
-						storeFile file(rootProject.file(".keystore/debug.jks"))
-						storePassword = "android"
-						keyAlias = "androiddebugkey"
-						keyPassword = "android"
-					}
-				}
-
-				buildTypes {
-					debug {
-						signingConfig = signingConfigs.debug
-						debuggable = true
-						minifyEnabled = false
-						zipAlignEnabled = false
-						crunchPngs = false
-						if (moduleCurrent == moduleAndroidApp) {
-							shrinkResources = false
-						}
-					}
-
-					release {
-						signingConfig = signingConfigs.debug
-						debuggable = false
-						minifyEnabled = true
-						zipAlignEnabled = true
-						crunchPngs = true
-						if (moduleCurrent == moduleAndroidApp) {
-							shrinkResources = true
-						}
-						proguardFiles(
-								getDefaultProguardFile("proguard-android-optimize.txt"),
-								"$project.rootDir/proguard-rules.pro"
-						)
-					}
-				}
-
-				compileOptions {
-					incremental = true
-					sourceCompatibility = JavaVersion.VERSION_1_8
-					targetCompatibility = JavaVersion.VERSION_1_8
-				}
-
-				dexOptions.preDexLibraries = true
-				lintOptions.abortOnError = false
-
-				dependenciesInfo {
-					includeInApk = false
-					includeInBundle = false
-				}
-			}
-		} else if (moduleCurrent == moduleJava) {
-			sourceCompatibility = JavaVersion.VERSION_1_8
-			targetCompatibility = JavaVersion.VERSION_1_8
-		}
-	}
-
-	if (project.hasProperty("kapt")) {
-		kapt {
-			useBuildCache = true
+		switch (plugin.class.name) {
+			case [javaPlugin, javaBasePlugin, javaBasePluginInject]:
+				project.apply from: file("$mainRootDir/gradle/plugin_java.gradle")
+				break
+			case androidLibraryPlugin:
+				project.apply from: file("$mainRootDir/gradle/plugin_android_library.gradle")
+				break
+			case androidAppPlugin:
+				project.apply from: file("$mainRootDir/gradle/plugin_android_app.gradle")
+				break
 		}
 	}
 }
@@ -108,6 +52,8 @@ if (hasProperty("buildScan")) {
 	}
 }
 
-task clean(type: Delete) {
-	delete rootProject.buildDir
+wrapper {
+	distributionType = Wrapper.DistributionType.ALL
 }
+
+apply from: file("gradle/tasks.gradle")
