@@ -40,6 +40,14 @@ subprojects {
 	}
 }
 
+allprojects {
+	gradle.projectsEvaluated {
+		tasks.withType(JavaCompile) {
+			options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+		}
+	}
+}
+
 if (hasProperty("buildScan")) {
 	buildScan {
 		termsOfServiceUrl = "https://gradle.com/terms-of-service"
