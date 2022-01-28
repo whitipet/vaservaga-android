@@ -53,7 +53,7 @@ if (hasProperty("buildScan")) {
 }
 
 wrapper {
-	distributionType = Wrapper.DistributionType.ALL
+	distributionType = Wrapper.DistributionType.BIN
 }
 
 apply from: file("gradle/tasks.gradle")
