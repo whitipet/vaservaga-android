@@ -22,6 +22,7 @@ buildscript {
 subprojects {
 	repositories {
 		google()
+		mavenCentral()
 	}
 
 	def javaPlugin = "org.gradle.api.plugins.JavaPlugin"
