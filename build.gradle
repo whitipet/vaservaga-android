@@ -5,7 +5,7 @@ buildscript {
 
 	repositories {
 		google()
-		jcenter()
+		mavenCentral()
 		maven {
 			name = "r8"
 			url = "https://storage.googleapis.com/r8-releases/raw"
@@ -20,11 +20,6 @@ buildscript {
 }
 
 subprojects {
-	repositories {
-		google()
-		jcenter()
-	}
-
 	def javaPlugin = "org.gradle.api.plugins.JavaPlugin"
 	def javaBasePlugin = "org.gradle.api.plugins.JavaBasePlugin"
 	def javaBasePluginInject = javaBasePlugin + '$' + "Inject"
