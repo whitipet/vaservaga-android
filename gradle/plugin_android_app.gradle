@@ -8,19 +8,8 @@ android {
 		versionName = config.versionName
 	}
 
-	signingConfigs {
-		debug {
-			storeFile file(rootProject.file(".keystore/debug.jks"))
-			storePassword = "android"
-			keyAlias = "androiddebugkey"
-			keyPassword = "android"
-		}
-	}
-
 	buildTypes {
 		debug {
-			signingConfig = signingConfigs.debug
-
 			shrinkResources = false
 		}
 
