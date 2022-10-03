@@ -5,9 +5,9 @@ ext.config = [
 		versionName      : "1.0.2",
 
 		minSdkVersion    : 16,
-		compileSdkVersion: 31,
+		compileSdkVersion: 33,
 
-		buildToolsVersion: "32.0.0",
+		buildToolsVersion: "33.0.0",
 
 		javaVersion      : JavaVersion.VERSION_11,
 ]
