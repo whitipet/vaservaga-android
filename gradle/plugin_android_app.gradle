@@ -1,6 +1,8 @@
 apply from: file("$mainRootDir/gradle/plugin_android.gradle")
 
 android {
+	namespace = config.applicationId
+
 	defaultConfig {
 		applicationId = config.applicationId
 
