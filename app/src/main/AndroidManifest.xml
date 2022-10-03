@@ -6,7 +6,6 @@
 	<application
 		android:allowBackup="true"
 		android:extractNativeLibs="false"
-		android:fullBackupContent="true"
 		android:icon="@drawable/ic_launcher"
 		android:label="Vaservaga"
 		android:roundIcon="@drawable/ic_launcher"
