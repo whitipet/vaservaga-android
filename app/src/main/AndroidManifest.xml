@@ -5,6 +5,7 @@
 
 	<application
 		android:allowBackup="true"
+		android:enableOnBackInvokedCallback="true"
 		android:extractNativeLibs="false"
 		android:icon="@drawable/ic_launcher"
 		android:label="Vaservaga"
