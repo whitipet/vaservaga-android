@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<inset
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:insetLeft="33dp"
-	android:insetTop="33dp"
-	android:insetRight="33dp"
-	android:insetBottom="33dp">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<shape android:shape="oval">
+	<item>
+		<shape>
+			<size
+				android:width="108dp"
+				android:height="108dp"/>
+		</shape>
+	</item>
 
-		<solid android:color="#f00"/>
-	</shape>
-</inset>
+	<item android:gravity="center">
+
+		<shape android:shape="oval">
+
+			<size
+				android:width="28dp"
+				android:height="28dp"/>
+
+			<solid android:color="#f00"/>
+		</shape>
+	</item>
+</layer-list>
