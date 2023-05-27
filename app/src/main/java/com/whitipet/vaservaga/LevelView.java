@@ -1,13 +1,7 @@
 package com.whitipet.vaservaga;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PointF;
-import android.graphics.RectF;
-import android.os.Build;
+import android.graphics.*;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -24,11 +18,6 @@ final class LevelView extends View {
 
 	public LevelView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-	}
-
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	public LevelView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 	//endregion
 
@@ -56,14 +45,10 @@ final class LevelView extends View {
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
+
 		float halfMinSize = (Math.min(w, h) * 0.9f) / 2.0f;
 		center.set(w / 2.0f, h / 2.0f);
-		bounds.set(
-				center.x - halfMinSize,
-				center.y - halfMinSize,
-				center.x + halfMinSize,
-				center.y + halfMinSize
-		);
+		bounds.set(center.x - halfMinSize, center.y - halfMinSize, center.x + halfMinSize, center.y + halfMinSize);
 		bubbleStepMultiplier = halfMinSize;
 		bubbleRadius = bounds.width() * 0.05f;
 
@@ -108,7 +93,6 @@ final class LevelView extends View {
 				center.y + (y * bubbleStepMultiplier),
 				bubbleRadius, paintBubble
 		);
-
 		canvas.drawPath(outlinePath, paintOutline);
 	}
 

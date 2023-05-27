@@ -30,18 +30,15 @@ final class DeviceRotationManager implements SensorEventListener {
 	private SensorManager sensorManager;
 
 	private SensorManager getSensorManager() {
-		if (sensorManager == null) {
-			sensorManager = (SensorManager) context.getSystemService(SENSOR_SERVICE);
-		}
+		if (sensorManager == null) sensorManager = (SensorManager) context.getSystemService(SENSOR_SERVICE);
 		return sensorManager;
 	}
 
 	private Sensor rotationVectorSensor;
 
 	private Sensor getRotationVectorSensor() {
-		if (rotationVectorSensor == null) {
+		if (rotationVectorSensor == null)
 			rotationVectorSensor = getSensorManager().getDefaultSensor(Sensor.TYPE_GRAVITY);
-		}
 		return rotationVectorSensor;
 	}
 
@@ -55,16 +52,12 @@ final class DeviceRotationManager implements SensorEventListener {
 				registered = true;
 			}
 		}
-		if (!registered) {
-			Toast.makeText(context, "Sensor unavailable", Toast.LENGTH_SHORT).show();
-		}
+		if (!registered) {Toast.makeText(context, "Sensor unavailable", Toast.LENGTH_SHORT).show();}
 	}
 
 	private void unregisterSensorsListener() {
 		SensorManager sensorManager = getSensorManager();
-		if (sensorManager != null) {
-			sensorManager.unregisterListener(this);
-		}
+		if (sensorManager != null) sensorManager.unregisterListener(this);
 	}
 
 	@Override
@@ -72,9 +65,7 @@ final class DeviceRotationManager implements SensorEventListener {
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		if (event.sensor.getType() != Sensor.TYPE_GRAVITY) {
-			return;
-		}
+		if (event.sensor.getType() != Sensor.TYPE_GRAVITY) return;
 
 		float x = event.values[0] / 10.0f;
 		float y = -event.values[1] / 10.0f;
