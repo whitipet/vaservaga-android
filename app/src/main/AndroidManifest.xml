@@ -7,7 +7,7 @@
 		android:enableOnBackInvokedCallback="true"
 		android:extractNativeLibs="false"
 		android:icon="@drawable/ic_launcher"
-		android:label="Vaservaga"
+		android:label="${appName}"
 		android:supportsRtl="true"
 		android:theme="@style/Theme.Vaservaga"
 		tools:ignore="UnusedAttribute">

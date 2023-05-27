@@ -1,1 +1,62 @@
 apply plugin: "com.android.application"
+apply from: file("$rootDir/projectСonfig.gradle")
+
+android {
+	namespace = config.applicationId
+
+	compileSdkVersion = config.compileSdkVersion
+	buildToolsVersion = config.buildToolsVersion
+
+	defaultConfig {
+		applicationId = config.applicationId
+
+		versionCode = config.versionCode
+		versionName = config.versionName
+
+		minSdkVersion(config.minSdkVersion)
+		targetSdkVersion(config.compileSdkVersion)
+
+		resConfigs(config.supportedLocales)
+
+		addManifestPlaceholders(appName: config.appName)
+	}
+
+	compileOptions {
+		sourceCompatibility = config.javaVersion
+		targetCompatibility = config.javaVersion
+
+		incremental = true
+	}
+
+	lint.abortOnError = false
+
+	dependenciesInfo {
+		includeInApk = false
+		includeInBundle = false
+	}
+
+	buildTypes {
+		debug {
+			debuggable = true
+			minifyEnabled = false
+			crunchPngs = false
+			shrinkResources = false
+		}
+
+		release {
+			debuggable = false
+			minifyEnabled = true
+			crunchPngs = true
+			shrinkResources = true
+			proguardFiles(
+					getDefaultProguardFile("proguard-android-optimize.txt"),
+					"$project.rootDir/proguardRules.pro"
+			)
+		}
+	}
+}
+
+java {
+	sourceCompatibility = config.javaVersion
+	targetCompatibility = config.javaVersion
+}

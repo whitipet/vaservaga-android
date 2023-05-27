@@ -1,8 +1,4 @@
 buildscript {
-	ext.mainRootDir = rootProject.projectDir.absolutePath
-
-	apply from: file("project_config.gradle")
-
 	repositories {
 		google()
 		mavenCentral()
@@ -24,44 +20,6 @@ subprojects {
 		google()
 		mavenCentral()
 	}
-
-	def javaPlugin = "org.gradle.api.plugins.JavaPlugin"
-	def javaBasePlugin = "org.gradle.api.plugins.JavaBasePlugin"
-	def javaBasePluginInject = javaBasePlugin + '$' + "Inject"
-	def androidLibraryPlugin = "com.android.build.gradle.LibraryPlugin"
-	def androidAppPlugin = "com.android.build.gradle.AppPlugin"
-	project.plugins.whenPluginAdded { plugin ->
-		switch (plugin.class.name) {
-			case [javaPlugin, javaBasePlugin, javaBasePluginInject]:
-				project.apply from: file("$mainRootDir/gradle/plugin_java.gradle")
-				break
-			case androidLibraryPlugin:
-				project.apply from: file("$mainRootDir/gradle/plugin_android_library.gradle")
-				break
-			case androidAppPlugin:
-				project.apply from: file("$mainRootDir/gradle/plugin_android_app.gradle")
-				break
-		}
-	}
 }
 
-allprojects {
-	gradle.projectsEvaluated {
-		tasks.withType(JavaCompile) {
-			options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
-		}
-	}
-}
-
-if (hasProperty("buildScan")) {
-	buildScan {
-		termsOfServiceUrl = "https://gradle.com/terms-of-service"
-		termsOfServiceAgree = "yes"
-	}
-}
-
-wrapper {
-	distributionType = Wrapper.DistributionType.BIN
-}
-
-apply from: file("gradle/tasks.gradle")
+wrapper.distributionType = Wrapper.DistributionType.BIN

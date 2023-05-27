@@ -8,10 +8,6 @@
 /captures
 .externalNativeBuild
 
-.keystore/*
-!.keystore/debug.jks
-!.keystore/debug.properties
-
 .idea/*
 !.idea/codeStyles
 !.idea/dictionaries/default.xml
