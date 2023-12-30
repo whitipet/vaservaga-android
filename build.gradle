@@ -11,7 +11,7 @@ buildscript {
 
 	dependencies {
 		classpath "com.android.tools:r8:8.1.50"
-		classpath "com.android.tools.build:gradle:8.0.2"
+		classpath "com.android.tools.build:gradle:8.2.0"
 	}
 }
 
