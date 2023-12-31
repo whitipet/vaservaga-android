@@ -21,5 +21,3 @@ subprojects {
 		mavenCentral()
 	}
 }
-
-wrapper.distributionType = Wrapper.DistributionType.BIN
