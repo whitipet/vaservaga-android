@@ -22,9 +22,6 @@ android {
 	}
 
 	compileOptions {
-		sourceCompatibility = config.javaVersion
-		targetCompatibility = config.javaVersion
-
 		incremental = true
 	}
 
@@ -57,6 +54,8 @@ android {
 }
 
 java {
-	sourceCompatibility = config.javaVersion
-	targetCompatibility = config.javaVersion
+	toolchain {
+		languageVersion = config.javaVersion
+		vendor = JvmVendorSpec.ADOPTIUM
+	}
 }
