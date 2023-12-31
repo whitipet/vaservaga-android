@@ -4,26 +4,24 @@ apply from: file("$rootDir/projectСonfig.gradle")
 android {
 	namespace = config.applicationId
 
-	compileSdkVersion = config.compileSdkVersion
+	compileSdk = config.compileSdkVersion
 	buildToolsVersion = config.buildToolsVersion
 
 	defaultConfig {
 		applicationId = config.applicationId
 
-		versionCode = config.versionCode
-		versionName = config.versionName
+		minSdk = config.minSdkVersion
+		targetSdk = config.compileSdkVersion
 
-		minSdkVersion(config.minSdkVersion)
-		targetSdkVersion(config.compileSdkVersion)
-
-		resConfigs(config.supportedLocales)
+		resourceConfigurations += config.supportedLocales
 
 		addManifestPlaceholders(appName: config.appName)
+
+		versionCode = config.versionCode
+		versionName = config.versionName
 	}
 
-	compileOptions {
-		incremental = true
-	}
+	compileOptions.incremental = true
 
 	lint.abortOnError = false
 
