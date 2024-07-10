@@ -3,7 +3,7 @@ ext.config = [
 		appName          : "Vaservaga",
 
 		versionCode      : 5,
-		versionName      : "1.0.4",
+		versionName      : "1.0.5",
 
 		minSdkVersion    : 16,
 		compileSdkVersion: 35,
