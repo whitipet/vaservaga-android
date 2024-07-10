@@ -1,4 +1,4 @@
-plugins { id("org.gradle.toolchains.foojay-resolver-convention") version "0.7.0" } //https://plugins.gradle.org/plugin/org.gradle.toolchains.foojay-resolver-convention
+plugins { id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0" } //https://plugins.gradle.org/plugin/org.gradle.toolchains.foojay-resolver-convention
 
 rootProject.name = "Vaservaga"
 
