@@ -6,9 +6,9 @@ ext.config = [
 		versionName      : "1.0.4",
 
 		minSdkVersion    : 16,
-		compileSdkVersion: 33,
+		compileSdkVersion: 35,
 
-		buildToolsVersion: "34.0.0",
+		buildToolsVersion: "35.0.0",
 
 		supportedLocales : ["en"],
 
