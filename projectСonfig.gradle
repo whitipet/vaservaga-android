@@ -10,7 +10,5 @@ ext.config = [
 
 		buildToolsVersion: "36.1.0",
 
-		supportedLocales : ["en"],
-
 		javaVersion      : JavaLanguageVersion.of(25),
 ]

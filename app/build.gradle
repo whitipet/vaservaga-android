@@ -9,13 +9,13 @@ android {
 	compileSdk = config.compileSdkVersion
 	buildToolsVersion = config.buildToolsVersion
 
+	androidResources.localeFilters = ["en"]
+
 	defaultConfig {
 		applicationId = config.applicationId
 
 		minSdk = config.minSdkVersion
 		targetSdk = config.compileSdkVersion
-
-		resourceConfigurations += config.supportedLocales
 
 		addManifestPlaceholders(appName: config.appName)
 
