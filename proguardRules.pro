@@ -1,4 +1,9 @@
-#Remove logs
+-allowaccessmodification
+-repackageclasses
+-flattenpackagehierarchy
+-keepattributes !SourceFile,!LineNumberTable
+
+# Remove logs
 -assumenosideeffects class android.util.Log {
 	public static boolean isLoggable(java.lang.String, int);
 	public static int v(...);
@@ -9,6 +14,3 @@
 	public static int wtf(...);
 	public static int println(...);
 }
-
-# Get rid of package names, makes file smaller
--repackageclasses
