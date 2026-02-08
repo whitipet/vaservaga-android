@@ -24,8 +24,8 @@ android {
 	}
 
 	compileOptions.incremental = true
-
 	lint.abortOnError = false
+	packagingOptions.jniLibs.useLegacyPackaging = false
 
 	dependenciesInfo {
 		includeInApk = false
@@ -49,16 +49,9 @@ android {
 		}
 	}
 
-	packagingOptions {
-		jniLibs {
-			useLegacyPackaging = false
-		}
-	}
 }
 
-java {
-	toolchain {
-		languageVersion = config.javaVersion
-		vendor = JvmVendorSpec.ADOPTIUM
-	}
+java.toolchain {
+	languageVersion = config.javaVersion
+	vendor = JvmVendorSpec.ADOPTIUM
 }

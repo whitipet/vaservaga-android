@@ -12,5 +12,5 @@ ext.config = [
 
 		supportedLocales : ["en"],
 
-		javaVersion      : JavaLanguageVersion.of(21),
+		javaVersion      : JavaLanguageVersion.of(25),
 ]
