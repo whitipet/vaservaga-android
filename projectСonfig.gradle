@@ -2,8 +2,8 @@ ext.config = [
 		applicationId    : "com.whitipet.vaservaga",
 		appName          : "Vaservaga",
 
-		versionCode      : 6,
-		versionName      : "1.0.5",
+		versionCode      : 7,
+		versionName      : "1.0.6",
 
 		minSdkVersion    : 16,
 		compileSdkVersion: 36,
