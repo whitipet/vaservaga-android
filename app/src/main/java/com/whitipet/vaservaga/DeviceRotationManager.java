@@ -5,7 +5,6 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.widget.Toast;
 
 import static android.content.Context.SENSOR_SERVICE;
 
@@ -24,14 +23,10 @@ final class DeviceRotationManager implements SensorEventListener {
 	void onStart() {
 		SensorManager manager = (SensorManager) context.getSystemService(SENSOR_SERVICE);
 		if (manager == null) return;
-
 		Sensor gravitySensor = manager.getDefaultSensor(Sensor.TYPE_GRAVITY);
-		if (gravitySensor != null) {
-			manager.registerListener(this, gravitySensor, SensorManager.SENSOR_DELAY_FASTEST);
-			sensorManager = manager;
-		} else {
-			Toast.makeText(context, "Sensor unavailable", Toast.LENGTH_SHORT).show();
-		}
+		if (gravitySensor == null) return;
+		manager.registerListener(this, gravitySensor, SensorManager.SENSOR_DELAY_FASTEST);
+		sensorManager = manager;
 	}
 
 	void onStop() {
