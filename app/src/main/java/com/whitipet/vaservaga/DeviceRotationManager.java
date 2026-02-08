@@ -19,45 +19,25 @@ final class DeviceRotationManager implements SensorEventListener {
 		this.onRotationChangedListener = onRotationChangedListener;
 	}
 
+	private SensorManager sensorManager;
+
 	void onStart() {
-		registerSensorsListener();
+		SensorManager manager = (SensorManager) context.getSystemService(SENSOR_SERVICE);
+		if (manager == null) return;
+
+		Sensor gravitySensor = manager.getDefaultSensor(Sensor.TYPE_GRAVITY);
+		if (gravitySensor != null) {
+			manager.registerListener(this, gravitySensor, SensorManager.SENSOR_DELAY_FASTEST);
+			sensorManager = manager;
+		} else {
+			Toast.makeText(context, "Sensor unavailable", Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	void onStop() {
-		unregisterSensorsListener();
-	}
-
-	private SensorManager sensorManager;
-
-	private SensorManager getSensorManager() {
-		if (sensorManager == null) sensorManager = (SensorManager) context.getSystemService(SENSOR_SERVICE);
-		return sensorManager;
-	}
-
-	private Sensor rotationVectorSensor;
-
-	private Sensor getRotationVectorSensor() {
-		if (rotationVectorSensor == null)
-			rotationVectorSensor = getSensorManager().getDefaultSensor(Sensor.TYPE_GRAVITY);
-		return rotationVectorSensor;
-	}
-
-	private void registerSensorsListener() {
-		boolean registered = false;
-		SensorManager sensorManager = getSensorManager();
-		if (sensorManager != null) {
-			Sensor rotationVectorSensor = getRotationVectorSensor();
-			if (rotationVectorSensor != null) {
-				sensorManager.registerListener(this, rotationVectorSensor, SensorManager.SENSOR_DELAY_FASTEST);
-				registered = true;
-			}
-		}
-		if (!registered) {Toast.makeText(context, "Sensor unavailable", Toast.LENGTH_SHORT).show();}
-	}
-
-	private void unregisterSensorsListener() {
-		SensorManager sensorManager = getSensorManager();
-		if (sensorManager != null) sensorManager.unregisterListener(this);
+		if (sensorManager == null) return;
+		sensorManager.unregisterListener(this);
+		sensorManager = null;
 	}
 
 	@Override
@@ -66,15 +46,10 @@ final class DeviceRotationManager implements SensorEventListener {
 	@Override
 	public void onSensorChanged(SensorEvent event) {
 		if (event.sensor.getType() != Sensor.TYPE_GRAVITY) return;
-
-		float x = event.values[0] / 10.0f;
-		float y = -event.values[1] / 10.0f;
-
-		onRotationChangedListener.onRotationChanged(x, y);
+		onRotationChangedListener.onRotationChanged(event.values[0] / 10.0f, -event.values[1] / 10.0f);
 	}
 
 	interface OnRotationChangedListener {
-
 		void onRotationChanged(float x, float y);
 	}
 }

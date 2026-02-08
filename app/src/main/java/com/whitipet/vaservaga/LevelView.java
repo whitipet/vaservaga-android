@@ -7,31 +7,8 @@ import android.view.View;
 
 final class LevelView extends View {
 
-	//region
-	public LevelView(Context context) {
-		super(context);
-	}
-
-	public LevelView(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
-
-	public LevelView(Context context, AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
-	//endregion
-
-	private static final int PAINT_FLAGS = Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG;
-
-	private final Paint paintOutline = new Paint(PAINT_FLAGS) {{
-		setStyle(Style.STROKE);
-		setColor(0xFFFFFFFF);
-		setStrokeWidth(2);
-	}};
-	private final Paint paintBubble = new Paint(PAINT_FLAGS) {{
-		setStyle(Style.FILL);
-		setColor(0xFFFF0000);
-	}};
+	private final Paint paintOutline;
+	private final Paint paintBubble;
 
 	private final RectF bounds = new RectF();
 	private final PointF center = new PointF();
@@ -41,6 +18,25 @@ final class LevelView extends View {
 
 	private float x;
 	private float y;
+
+	public LevelView(Context context) {this(context, null);}
+
+	public LevelView(Context context, AttributeSet attrs) {this(context, attrs, 0);}
+
+	public LevelView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+
+		final int PAINT_FLAGS = Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG;
+
+		paintOutline = new Paint(PAINT_FLAGS);
+		paintOutline.setStyle(Paint.Style.STROKE);
+		paintOutline.setColor(0xFFFFFFFF);
+		paintOutline.setStrokeWidth(2);
+
+		paintBubble = new Paint(PAINT_FLAGS);
+		paintBubble.setStyle(Paint.Style.FILL);
+		paintBubble.setColor(0xFFFF0000);
+	}
 
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -53,6 +49,13 @@ final class LevelView extends View {
 		bubbleRadius = bounds.width() * 0.05f;
 
 		updateOutline();
+	}
+
+	void setData(float x, float y) {
+		this.x = x;
+		this.y = y;
+
+		invalidate();
 	}
 
 	private void updateOutline() {
@@ -86,20 +89,11 @@ final class LevelView extends View {
 
 	@Override
 	protected void onDraw(Canvas canvas) {
-		super.onDraw(canvas);
-
 		canvas.drawCircle(
 				center.x + (x * bubbleStepMultiplier),
 				center.y + (y * bubbleStepMultiplier),
 				bubbleRadius, paintBubble
 		);
 		canvas.drawPath(outlinePath, paintOutline);
-	}
-
-	void setData(float x, float y) {
-		this.x = x;
-		this.y = y;
-
-		invalidate();
 	}
 }
