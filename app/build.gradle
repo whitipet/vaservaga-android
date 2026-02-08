@@ -2,6 +2,8 @@ apply plugin: "com.android.application"
 apply from: file("$rootDir/projectСonfig.gradle")
 
 android {
+	enableKotlin = false
+
 	namespace = config.applicationId
 
 	compileSdk = config.compileSdkVersion
