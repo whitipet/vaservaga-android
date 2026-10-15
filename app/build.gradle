@@ -48,7 +48,6 @@ android {
 			proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "$rootDir/proguardRules.pro")
 		}
 	}
-
 }
 
 java.toolchain {
