@@ -5,7 +5,9 @@
 		<item name="android:statusBarColor" tools:ignore="NewApi">#0000</item>
 		<item name="android:navigationBarColor" tools:ignore="NewApi">#0000</item>
 
-		<item name="android:enforceStatusBarContrast" tools:targetApi="q">false</item>
-		<item name="android:enforceNavigationBarContrast" tools:targetApi="q">false</item>
+		<item name="android:enforceStatusBarContrast" tools:targetApi="29">false</item>
+		<item name="android:enforceNavigationBarContrast" tools:targetApi="29">false</item>
+
+		<item name="android:windowSplashScreenBackground" tools:targetApi="31">#000</item>
 	</style>
 </resources>
