@@ -1,9 +1,4 @@
--allowaccessmodification
--repackageclasses
--flattenpackagehierarchy
--keepattributes !SourceFile,!LineNumberTable
-
-# Remove logs
+#noinspection ShrinkerUnresolvedReference
 -assumenosideeffects class android.util.Log {
 	public static boolean isLoggable(java.lang.String, int);
 	public static int v(...);

@@ -1,5 +1,5 @@
 apply plugin: "com.android.application"
-apply from: file("$rootDir/projectСonfig.gradle")
+apply from: file("$rootDir/projectConfig.gradle")
 
 android {
 	enableKotlin = false
@@ -9,13 +9,22 @@ android {
 	compileSdk { version = release(config.compileSdkVersion) { minorApiLevel = config.compileSdkVersionMinor } }
 	buildToolsVersion = config.buildToolsVersion
 
-	androidResources.localeFilters = ["en"]
+	androidResources {
+		localeFilters = ["en"]
+		generateLocaleConfig = false
+	}
+
+	buildFeatures {
+		buildConfig = false
+		resValues = false
+		shaders = false
+	}
 
 	defaultConfig {
 		applicationId = config.applicationId
 
-		minSdk = config.minSdkVersion
-		targetSdk = config.compileSdkVersion
+		minSdk { version = release(config.minSdkVersion) }
+		targetSdk { version = release(config.compileSdkVersion) }
 
 		addManifestPlaceholders(appName: config.appName)
 
@@ -24,8 +33,21 @@ android {
 	}
 
 	compileOptions.incremental = true
-	lint.abortOnError = false
-	packagingOptions.jniLibs.useLegacyPackaging = false
+
+	lint {
+		abortOnError = false
+		checkReleaseBuilds = false
+	}
+
+	packaging {
+		jniLibs.useLegacyPackaging = false
+		resources.excludes.addAll([
+				"/META-INF/**/LICENSE.txt",
+				"/META-INF/**/NOTICE.txt",
+				"/META-INF/native-image/**",
+				"/DebugProbesKt.bin",
+		])
+	}
 
 	dependenciesInfo {
 		includeInApk = false
@@ -35,17 +57,14 @@ android {
 	buildTypes {
 		debug {
 			debuggable = true
-			minifyEnabled = false
 			crunchPngs = false
-			shrinkResources = false
+			optimization.enable = false
 		}
 
 		release {
 			debuggable = false
-			minifyEnabled = true
 			crunchPngs = true
-			shrinkResources = true
-			proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "$rootDir/proguardRules.pro")
+			optimization.enable = true
 		}
 	}
 }

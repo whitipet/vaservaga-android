@@ -1,0 +1,4 @@
+-allowaccessmodification
+-repackageclasses
+-flattenpackagehierarchy
+-keepattributes !SourceFile,!LineNumberTable
