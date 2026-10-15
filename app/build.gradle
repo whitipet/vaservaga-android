@@ -12,6 +12,10 @@ android {
 	androidResources {
 		localeFilters = ["en"]
 		generateLocaleConfig = false
+		additionalParameters += [
+				"--enable-compact-entries",
+				"--no-compile-sdk-metadata",
+		]
 	}
 
 	buildFeatures {
@@ -46,8 +50,11 @@ android {
 				"/META-INF/**/NOTICE.txt",
 				"/META-INF/native-image/**",
 				"/DebugProbesKt.bin",
+				"/META-INF/com/android/build/gradle/app-metadata.properties",
+				"/META-INF/version-control-info.textproto",
 		])
 	}
+
 
 	dependenciesInfo {
 		includeInApk = false

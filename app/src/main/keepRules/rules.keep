@@ -1,4 +1,11 @@
 -allowaccessmodification
 -repackageclasses
--flattenpackagehierarchy
--keepattributes !SourceFile,!LineNumberTable
+-renamesourcefileattribute ""
+
+-assumenosideeffects class java.lang.Throwable {
+	public void printStackTrace();
+}
+
+-assumenosideeffects class java.lang.AssertionError {
+	public <init>(...);
+}
