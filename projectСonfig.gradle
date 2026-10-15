@@ -1,14 +1,15 @@
 ext.config = [
-		applicationId    : "com.whitipet.vaservaga",
-		appName          : "Vaservaga",
+		applicationId         : "com.whitipet.vaservaga",
+		appName               : "Vaservaga",
 
-		versionCode      : 7,
-		versionName      : "1.0.6",
+		versionCode           : 7,
+		versionName           : "1.0.6",
 
-		minSdkVersion    : 16,
-		compileSdkVersion: 36,
+		minSdkVersion         : 16,
+		compileSdkVersion     : 37,
+		compileSdkVersionMinor: 2,
 
-		buildToolsVersion: "37.0.0",
+		buildToolsVersion     : "37.0.0",
 
-		javaVersion      : JavaLanguageVersion.of(25),
+		javaVersion           : JavaLanguageVersion.of(25),
 ]

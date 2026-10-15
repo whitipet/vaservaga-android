@@ -6,7 +6,7 @@ android {
 
 	namespace = config.applicationId
 
-	compileSdk = config.compileSdkVersion
+	compileSdk { version = release(config.compileSdkVersion) { minorApiLevel = config.compileSdkVersionMinor } }
 	buildToolsVersion = config.buildToolsVersion
 
 	androidResources.localeFilters = ["en"]
