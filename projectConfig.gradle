@@ -5,7 +5,7 @@ ext.config = [
 		versionCode           : 7,
 		versionName           : "1.0.6",
 
-		minSdkVersion         : 16,
+		minSdkVersion         : 24,
 		compileSdkVersion     : 37,
 		compileSdkVersionMinor: 2,
 

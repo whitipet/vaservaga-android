@@ -61,6 +61,11 @@ android {
 		includeInBundle = false
 	}
 
+	signingConfigs.configureEach {
+		v1SigningEnabled = false
+		v2SigningEnabled = true
+	}
+
 	buildTypes {
 		debug {
 			debuggable = true
